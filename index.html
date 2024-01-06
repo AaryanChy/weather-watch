@@ -14,19 +14,37 @@
       placeholder="Enter place name eg:London"
     />
     <button type="button" class="search">Search</button>
+    <div class="loader">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="errorMessage"></div>
     <div class="container">
       <div class="location">
-        <div class="cityName">London</div>
+        <div class="cityName"></div>
         <div class="condition"></div>
       </div>
       <div class="temperature">
-        <span class="tempValue">23 °C</span>
+        <span class="tempValue"></span>
         <div class="rightInfo">
-          <span class="humidValue"> Humid:23</span>
-          <span class="windValue">Wind: 23</span>
+          <span class="humidValue"> </span>
+          <span class="windValue"></span>
         </div>
       </div>
-      <div class="optToggle"></div>
+      <div class="optToggle">
+        <span class="celcius">°C</span>
+        <label class="switch">
+          <input type="checkbox" class="check" />
+          <span class="slider round"></span>
+        </label>
+        <span class="fahrenheit">°F</span>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>

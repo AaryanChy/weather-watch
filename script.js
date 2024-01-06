@@ -4,12 +4,14 @@ const condition = document.querySelector(".condition");
 const tempValue = document.querySelector(".tempValue");
 const humidValue = document.querySelector(".humidValue");
 const windValue = document.querySelector(".windValue");
-const toggle = document.querySelector(".optToggle");
 const input = document.querySelector(".search");
 const searchBtn = document.querySelector("button");
+const toggle = document.querySelector(".check");
+const errorContainer = document.querySelector(".errorMessage");
 
 searchBtn.addEventListener("click", () => {
   fetchData(input.value);
+  showLoading();
 });
 const fetchData = async (value) => {
   try {
@@ -18,17 +20,35 @@ const fetchData = async (value) => {
     );
     let data = await response.json();
     if (!data) {
-      console.log("sorry there is no Data");
+      throw new Error(data.error);
     } else {
       console.log(data);
-      showWeatherInfo(data);
+      if (data.error.code === 1006) {
+        mainContainer.style.display = "none";
+        const p = document.createElement("p");
+        p.textContent = data.error.message;
+        errorContainer.appendChild(p);
+      } else {
+        showWeatherInfo(data);
+      }
     }
   } catch (error) {
     console.log(error);
   }
 };
 
+const showLoading = () => {
+  const loader = document.querySelector(".loader");
+  loader.style.display = "block";
+  mainContainer.style.display = "none";
+};
+const hideLoading = () => {
+  const loader = document.querySelector(".loader");
+  loader.style.display = "none";
+  mainContainer.style.display = "block";
+};
 const showWeatherInfo = (data) => {
+  hideLoading();
   const img = document.createElement("img");
   const p = document.createElement("p");
   cityName.textContent = data.location.name;
@@ -41,4 +61,11 @@ const showWeatherInfo = (data) => {
   windValue.textContent = `Wind: ${data.current.wind_kph} kph`;
   condition.appendChild(img);
   condition.appendChild(p);
+  toggle.addEventListener("change", (e) => {
+    if (e.target.checked) {
+      tempValue.textContent = `${data.current.temp_f} °F`;
+    } else {
+      tempValue.textContent = `${data.current.temp_c} °C`;
+    }
+  });
 };
