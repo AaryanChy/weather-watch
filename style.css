@@ -1,0 +1,85 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  margin: 10px;
+  min-width: 400px;
+  min-height: 30px;
+  border-radius: 5px;
+}
+
+button {
+  min-width: 100px;
+  min-height: 30px;
+
+  border-radius: 5px;
+}
+
+.container {
+  min-width: 200px;
+  width: 400px;
+  height: 250px;
+  max-height: 250px;
+  border: 0.2px solid;
+  border-radius: 5px;
+  margin: 50px;
+}
+
+.location {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  gap: 30px;
+  min-height: 20px;
+  height: 100px;
+  max-height: 250px;
+  background-color: rgba(73, 73, 233, 0.662);
+}
+
+.cityName {
+  font-size: 34px;
+  font-weight: bold;
+}
+
+.temperature {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 20px;
+  height: 80px;
+  background-color: rgba(73, 73, 233, 0.396);
+}
+
+.tempValue {
+  display: flex;
+  font-size: 40px;
+  flex-basis: 250px;
+  justify-content: center;
+  align-items: center;
+}
+.rightInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-size: small;
+}
+
+.condition {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 18px;
+}
+
+.icon {
+  height: 48px;
+  width: 48px;
+}
