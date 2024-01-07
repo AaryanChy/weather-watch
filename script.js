@@ -14,26 +14,21 @@ searchBtn.addEventListener("click", () => {
   showLoading();
 });
 const fetchData = async (value) => {
-  try {
-    let response = await fetch(
-      `https://api.weatherapi.com/v1/current.json?key=8e97ef37eede4374ae2112637233103&q=${value}`
-    );
-    let data = await response.json();
-    if (!data) {
-      throw new Error(data.error);
-    } else {
-      console.log(data);
-      if (data.error.code === 1006) {
-        mainContainer.style.display = "none";
-        const p = document.createElement("p");
-        p.textContent = data.error.message;
-        errorContainer.appendChild(p);
-      } else {
-        showWeatherInfo(data);
-      }
-    }
-  } catch (error) {
-    console.log(error);
+  let response = await fetch(
+    `https://api.weatherapi.com/v1/current.json?key=8e97ef37eede4374ae2112637233103&q=${value}`
+  );
+  let data = await response.json();
+
+  console.log(data);
+  if (!data.error) {
+    errorContainer.innerHTML = "";
+    showWeatherInfo(data);
+  } else {
+    errorContainer.innerHTML = "";
+    mainContainer.style.display = "none";
+    const p = document.createElement("p");
+    p.textContent = data.error.message;
+    errorContainer.appendChild(p);
   }
 };
 
